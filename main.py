@@ -14,8 +14,33 @@ def start():
     tah()
 
 def tah():
-    print("zadaj poziciu svojho tahu: 1-9")
-    volba = input()
+    kontrola_vyhry()
+    volba = input("zadaj poziciu svojho tahu: 1-9")
+    volba = int(volba) - 1
+    if (pole[volba] == "-"):
+        pole[volba] = "X"
+        vypis_pole()
+        tah2()
+    else:
+        print("tah nemozno uskutocnit")
+        tah()
+
+def tah2():
+    kontrola_vyhry()
+    volba2 = input("zadaj poziciu svojho tahu: 1-9")
+    volba2 = int(volba2) - 1
+    if (pole[volba2] == "-"):
+        pole[volba2] = "O"
+        vypis_pole()
+        tah()
+    else:
+        print("tah nemozno uskutocnit")
+        tah2()
+
+
+def kontrola_vyhry():
+    print()
+
 
 start()
 
