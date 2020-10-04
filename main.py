@@ -16,11 +16,12 @@ def start():
     print("7 8 9")
     tah()
 
+#Tah hraca X
 def tah():
     kontrola_vyhry()
     if vitaz != "-":
         return
-    volba = input("zadaj poziciu svojho tahu: 1-9")
+    volba = input("Na tahu je hrac X, zadaj poziciu svojho tahu: 1-9")
     volba = int(volba) - 1
     if (pole[volba] == "-"):
         pole[volba] = "X"
@@ -30,11 +31,12 @@ def tah():
         print("tah nemozno uskutocnit")
         tah()
 
+#Tah hraca 0
 def tah2():
     kontrola_vyhry()
     if vitaz != "-":
         return
-    volba2 = input("zadaj poziciu svojho tahu: 1-9")
+    volba2 = input("Na tahu je hrac 0, zadaj poziciu svojho tahu: 1-9")
     volba2 = int(volba2) - 1
     if (pole[volba2] == "-"):
         pole[volba2] = "O"
@@ -49,10 +51,12 @@ def kontrola_vyhry():
     riadok()
     stlpec()
     diagonal()
+    #pridat kontrolu ci vitaz je 0 - nefunguje porovnanie vitaza s "0"
     if vitaz == "X":
         print("Hrac X vyhral, gratulujeme :)")
-    elif vitaz == "0":
-        print("Hrac 0 vyhral, gratulujeme :)")
+    elif vitaz == "-":
+        return
+    else: print("Hrac 0 vyhral, gratulujeme :)")
 
 def riadok():
     global vitaz
