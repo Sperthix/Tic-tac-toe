@@ -1,14 +1,16 @@
-#hracia plocha
+# hracia plocha
 pole = ["-", "-", "-",
         "-", "-", "-",
         "-", "-", "-"]
 
 vitaz = "-"
 
+
 def vypis_pole():
     print(pole[0] + " " + pole[1] + " " + pole[2])
     print(pole[3] + " " + pole[4] + " " + pole[5])
     print(pole[6] + " " + pole[7] + " " + pole[8])
+
 
 def start():
     print("1 2 3")
@@ -16,14 +18,15 @@ def start():
     print("7 8 9")
     tah()
 
-#Tah hraca X
+
+# Tah hraca X
 def tah():
     kontrola_vyhry()
     if vitaz != "-":
         return
     volba = input("Na tahu je hrac X, zadaj poziciu svojho tahu: 1-9")
     volba = int(volba) - 1
-    if (pole[volba] == "-"):
+    if pole[volba] == "-":
         pole[volba] = "X"
         vypis_pole()
         tah2()
@@ -31,14 +34,15 @@ def tah():
         print("tah nemozno uskutocnit")
         tah()
 
-#Tah hraca 0
+
+# Tah hraca 0
 def tah2():
     kontrola_vyhry()
     if vitaz != "-":
         return
     volba2 = input("Na tahu je hrac 0, zadaj poziciu svojho tahu: 1-9")
     volba2 = int(volba2) - 1
-    if (pole[volba2] == "-"):
+    if pole[volba2] == "-":
         pole[volba2] = "O"
         vypis_pole()
         tah()
@@ -48,15 +52,29 @@ def tah2():
 
 
 def kontrola_vyhry():
+    global vitaz
+    pokracujeme = False
     riadok()
     stlpec()
     diagonal()
-    #pridat kontrolu ci vitaz je 0 - nefunguje porovnanie vitaza s "0"
+    # pridat kontrolu ci vitaz je 0 - nefunguje porovnanie vitaza s "0"
     if vitaz == "X":
         print("Hrac X vyhral, gratulujeme :)")
     elif vitaz == "-":
-        return
-    else: print("Hrac 0 vyhral, gratulujeme :)")
+        # prehladaj pole, ci je este mozne urobit nejaky tah, ak nie, vyhlas remizu
+        for x in pole:
+            if x == "-":
+                pokracujeme = True
+                break
+        if pokracujeme == False:
+            vitaz = "R"
+            print("Remiza")
+
+
+
+    else:
+        print("Hrac 0 vyhral, gratulujeme :)")
+
 
 def riadok():
     global vitaz
@@ -66,7 +84,9 @@ def riadok():
         vitaz = pole[3]
     elif pole[6] == pole[7] == pole[8] != "-":
         vitaz = pole[6]
-    else: return
+    else:
+        return
+
 
 def stlpec():
     global vitaz
@@ -76,7 +96,9 @@ def stlpec():
         vitaz = pole[1]
     elif pole[2] == pole[5] == pole[8] != "-":
         vitaz = pole[2]
-    else: return
+    else:
+        return
+
 
 def diagonal():
     global vitaz
@@ -84,9 +106,8 @@ def diagonal():
         vitaz = pole[0]
     elif pole[2] == pole[4] == pole[6] != "-":
         vitaz = pole[2]
-    else: return
+    else:
+        return
 
 
 start()
-
-
