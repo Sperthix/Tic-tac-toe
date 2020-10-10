@@ -25,13 +25,22 @@ def tah():
     if vitaz != "-":
         return
     volba = input("Na tahu je hrac X, zadaj poziciu svojho tahu: 1-9")
-    volba = int(volba) - 1
-    if pole[volba] == "-":
-        pole[volba] = "X"
-        vypis_pole()
-        tah2()
+    if volba.isdigit():
+        volba = int(volba)
+        if 1 <= volba <= 9:
+            volba -= 1
+            if pole[volba] == "-":
+                pole[volba] = "X"
+                vypis_pole()
+                tah2()
+            else:
+                print("tah nemozno uskutocnit")
+                tah()
+        else:
+            print("Nespravny vstup")
+            tah()
     else:
-        print("tah nemozno uskutocnit")
+        print("Nespravny vstup")
         tah()
 
 
@@ -41,13 +50,22 @@ def tah2():
     if vitaz != "-":
         return
     volba2 = input("Na tahu je hrac 0, zadaj poziciu svojho tahu: 1-9")
-    volba2 = int(volba2) - 1
-    if pole[volba2] == "-":
-        pole[volba2] = "O"
-        vypis_pole()
-        tah()
+    if volba2.isdigit():
+        volba2 = int(volba2)
+        if 1 <= volba2 <= 9:
+            volba2 -= 1
+            if pole[volba2] == "-":
+                pole[volba2] = "O"
+                vypis_pole()
+                tah()
+            else:
+                print("tah nemozno uskutocnit")
+                tah2()
+        else:
+            print("Nespravny vstup")
+            tah2()
     else:
-        print("tah nemozno uskutocnit")
+        print("Nespravny vstup")
         tah2()
 
 
